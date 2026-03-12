@@ -33,6 +33,8 @@ class DevSpacesRemoteProvider(
         type = SvgIcon.IconType.Default
     )
 
+    override val noEnvironmentsDescription: String = "Start a workspace from Dev Spaces Dashboard"
+
     override val environments: MutableStateFlow<LoadableState<List<DevSpacesRemoteEnvironment>>> =
         repository.environments
 
