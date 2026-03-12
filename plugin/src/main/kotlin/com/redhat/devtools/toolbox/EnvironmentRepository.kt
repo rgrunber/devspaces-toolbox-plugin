@@ -58,10 +58,12 @@ class EnvironmentRepository(
             refreshEnvironments()
 
             // Periodic refresh
-            while (isActive) {
-                delay(refreshInterval)
-                refreshEnvironments()
-            }
+            // TODO: enable it once fetching all workspaces implemented in DataSource
+            // Disabled to prevent loosing an environment came externally, through URL.
+//            while (isActive) {
+//                delay(refreshInterval)
+//                refreshEnvironments()
+//            }
         }
     }
 
