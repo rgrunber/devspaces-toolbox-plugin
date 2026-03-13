@@ -32,12 +32,13 @@ class DevWorkspacesDataSource(
     }
 
     override fun handleExternalRequest(
-        id: String, name: String, sshKey: String, projects: List<String>
+        id: String, name: String, userName: String, sshKey: String, projects: List<String>
     ): EnvironmentConfig {
         return EnvironmentConfig(
             id = id,
             name = MutableStateFlow(name),
             description = "[External] DevWorkspace",
+            username = userName,
             sshKey = sshKey,
             availableIdeProductCodes = listOf("IU"),
             projectPaths = projects

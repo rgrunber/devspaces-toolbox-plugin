@@ -36,7 +36,7 @@ interface EnvironmentDataSource {
      * Returns an additional environment configuration
      * came from external request.
      */
-    fun handleExternalRequest(id: String, name: String, sshKey: String, projects: List<String>): EnvironmentConfig
+    fun handleExternalRequest(id: String, name: String, userName: String, sshKey: String, projects: List<String>): EnvironmentConfig
 }
 
 /**
