@@ -49,7 +49,7 @@ class InstallToolboxPlugin : Plugin<Project> {
         val os = System.getProperty("os.name").lowercase(Locale.getDefault())
         val toolboxCachesDir = when {
           os.contains("win") -> System.getenv("LOCALAPPDATA")?.let { Path.of(it) } ?: (userHome / "AppData" / "Local")
-          os.contains("linux") -> System.getenv("XDG_DATA_HOME")?.let { Path.of(it) } ?: (userHome / ".local" / "share")
+          os.contains("linux") -> System.getenv("XDG_CACHE_HOME")?.let { Path.of(it) } ?: (userHome / ".cache")
           os.contains("mac") -> userHome / "Library" / "Caches"
           else -> error("Unknown os: $os")
         } / "JetBrains" / "Toolbox"

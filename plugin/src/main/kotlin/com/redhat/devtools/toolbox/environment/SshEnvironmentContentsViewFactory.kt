@@ -32,7 +32,7 @@ class SshEnvironmentContentsViewFactory : EnvironmentContentsViewFactory {
             CachedProject(path)
         }
 
-        return SimpleEnvironmentContentsView(ides, projects, config.sshKey!!)
+        return SimpleEnvironmentContentsView(ides, projects, config.username!!, config.sshKey!!)
     }
 }
 
@@ -42,6 +42,7 @@ class SshEnvironmentContentsViewFactory : EnvironmentContentsViewFactory {
 class SimpleEnvironmentContentsView(
     ides: List<CachedIdeStub>,
     projects: List<CachedProject>,
+    val userName: String,
     val sshKey: String
 ) : ManualEnvironmentContentsView, SshEnvironmentContentsView {
 
@@ -52,7 +53,7 @@ class SimpleEnvironmentContentsView(
     override val projectListState: Flow<LoadableState<List<CachedProject>>> =
         MutableStateFlow(LoadableState.Value(projects))
 
-    override suspend fun getConnectionInfo(): SshConnectionInfo = WorkspaceSshConnectionInfo(sshKey)
+    override suspend fun getConnectionInfo(): SshConnectionInfo = WorkspaceSshConnectionInfo(userName, sshKey)
 }
 
 data class SimpleIdeStub(
@@ -62,14 +63,15 @@ data class SimpleIdeStub(
     override fun isRunning(): Boolean? = running
 }
 
-private class WorkspaceSshConnectionInfo(val sshKey: String) : SshConnectionInfo {
+private class WorkspaceSshConnectionInfo(val uName: String, val sshKey: String) : SshConnectionInfo {
 
     // localhost as we forward remote port to a local system
     override val host: String = "127.0.0.1"
 
+    // TODO: constant local port means we only support one active connection
     override val port: Int = 2022
 
-    override val userName: String = "1001270000"
+    override val userName: String = uName
 
     override val privateKeys: List<ByteArray>
         get() = listOf(sshKey.toByteArray())

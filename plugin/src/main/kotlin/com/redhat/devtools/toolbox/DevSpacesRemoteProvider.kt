@@ -59,6 +59,7 @@ class DevSpacesRemoteProvider(
 
         val dwID: String = queryParams["dwID"] ?: ""
         val dwName: String = queryParams["dwName"] ?: ""
+        val userName: String = queryParams["username"] ?: ""
         val sshKey: String = queryParams["key"] ?: ""
         val project: String = queryParams["project"] ?: ""
 
@@ -67,6 +68,7 @@ class DevSpacesRemoteProvider(
             EnvironmentConfig(
                 id = dwID,
                 name = MutableStateFlow(dwName),
+                username = userName,
                 sshKey = sshKey,
                 projectPaths = listOf(project),
             )
