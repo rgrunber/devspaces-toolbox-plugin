@@ -19,8 +19,6 @@ Alternatively, you can provide [this custom editor definition](https://gist.gith
 
 b. Once a workspace is up and running, follow the provided instruction to open Toolbox App.
 
-If there's `Host key verification failed` error in Toolbox, check the `~/.ssh/known_hosts` file and delete the `127.0.0.1` entries.
-
 c. Once the Toolbox App connected to a remote, click it and choose an IDE to install in the CDE.
 
 d. Once a chosen IDE is installed, go the previous page and click the project folder. Local ThinClient will connect to CDE.

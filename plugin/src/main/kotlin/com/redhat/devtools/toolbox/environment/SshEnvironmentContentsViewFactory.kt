@@ -65,13 +65,17 @@ data class SimpleIdeStub(
 
 private class WorkspaceSshConnectionInfo(val uName: String, val sshKey: String) : SshConnectionInfo {
 
-    // localhost as we forward remote port to a local system
-    override val host: String = "127.0.0.1"
+    override val host: String = "devspaces"
 
     // TODO: constant local port means we only support one active connection
     override val port: Int = 2022
 
     override val userName: String = uName
+
+    override val sshConfig: String = "Host $host\n" +
+            "  HostName 127.0.0.1\n" +
+            "  UserKnownHostsFile /dev/null\n" +
+            "  StrictHostKeyChecking no"
 
     override val privateKeys: List<ByteArray>
         get() = listOf(sshKey.toByteArray())
