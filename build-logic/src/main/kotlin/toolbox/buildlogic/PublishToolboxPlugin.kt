@@ -80,7 +80,6 @@ class PublishToolboxPlugin : Plugin<Project> {
       }
 
       println("Publishing plugin ${extensionId.get()} to JetBrains Marketplace...")
-      println("Token prefix: ${jbMarketplaceToken.take(5)}*****")
 
       val instance = PluginRepositoryFactory.create(
         "https://plugins.jetbrains.com", jbMarketplaceToken
